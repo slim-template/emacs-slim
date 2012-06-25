@@ -28,9 +28,13 @@ html
       table
         - for user in users do
           tr
-            td.user id=some_ruby('ere', @rme) data-test="some text #{with @ruby}" = @post.name 
+            td.user id=some_ruby('ere', @rme) data-test="some text #{with @ruby}" = @post.name
     - else
       p There are no users.
+
+
+    a href=root_url
+      It works too
 
     / Single comment line
     #content Hello #{@user.name}! Welcome to the test page!
