@@ -403,7 +403,7 @@ the current line."
   (mapconcat 'identity (make-list slim-indent-offset " ") ""))
 
 ;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.slim$" . slim-mode))
+(add-to-list 'auto-mode-alist '("\\.slim\\'" . slim-mode))
 
 ;; Setup/Activation
 (provide 'slim-mode)
