@@ -140,11 +140,15 @@ text nested beneath them.")
      ("\\#[a-z0-9_-]+" nil nil
       (0 font-lock-keyword-face)))
     ;; ==, =, -
-    ("^ *\\(\\(==?|-\\) .*\\)"
-     1 font-lock-preprocessor-face prepend)
+    ("^ *\\(==?\\|-\\)"
+      (1 font-lock-preprocessor-face)
+      (,(regexp-opt
+         '("if" "for" "in" "do" "unless"
+           "while" "yield") 'words) nil nil
+           (0 font-lock-keyword-face)))
     ;; tag ==, tag =
-    ("^ *[\\.#a-z0-9_-]+\\(==? .*\\)"
-     1 font-lock-preprocessor-face prepend)))
+    ("^ *[\\.#a-z0-9_-]+.*\\(==?\\) +"
+     1 font-lock-preprocessor-face)))
 
 (defconst slim-embedded-re "^ *[a-z0-9_-]+:")
 (defconst slim-comment-re  "^ */")
