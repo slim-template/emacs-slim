@@ -148,7 +148,8 @@ text nested beneath them.")
       (1 font-lock-preprocessor-face)
       (,(regexp-opt
          '("if" "for" "in" "do" "unless"
-           "while" "yield") 'words) nil nil
+           "while" "yield" "not" "and" "or")
+         'words) nil nil
            (0 font-lock-keyword-face)))
     ;; tag ==, tag =
     ("^ *[\\.#a-z0-9_-]+.*\\(==?\\) +"
