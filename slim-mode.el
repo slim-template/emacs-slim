@@ -105,6 +105,10 @@ text nested beneath them.")
      (0 font-lock-variable-name-face)
      ("\\.[a-z0-9_-]+" nil nil
       (0 font-lock-keyword-face)))
+    ;; ruby symbol
+    (":\\w+" . font-lock-constant-face)
+    ;; ruby symbol (1.9)
+    ("\\w+:" . font-lock-constant-face)
     ;; #id
     ("^ *\\(#[a-z0-9_-]+\/?\\)"
      1 font-lock-keyword-face)
