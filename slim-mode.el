@@ -52,13 +52,6 @@ line itself."
   :type 'boolean
   :group 'slim)
 
-(defface slim-tab-face
-  '((((class color)) (:background "hotpink"))
-    (t (:reverse-video t)))
-  "Face to use for highlighting tabs in Slim files."
-  :group 'faces
-  :group 'slim)
-
 (defvar slim-indent-function 'slim-indent-p
   "This function should look at the current line and return true
 if the next line could be nested within this line.")
@@ -87,7 +80,6 @@ text nested beneath them.")
     (,(slim-nested-re "[a-z0-9_]+:")      0 font-lock-string-face)                  ;; Embedded block
     (,(slim-nested-re "[\|'`].*")         0 font-lock-string-face)                  ;; Text block
     ("^!.*"                               0 font-lock-constant-face)                ;; Directive
-    ("^ *\\(\t\\)"                        1 'slim-tab-face)
     ("\\('[^']*'\\)"                      1 font-lock-string-face append)           ;; Single quote string TODO
     ("\\(\"[^\"]*\"\\)"                   1 font-lock-string-face append)           ;; Double quoted string TODO
     ("@[a-z0-9_]+"                        0 font-lock-variable-name-face append)    ;; Class variable TODO
