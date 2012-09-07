@@ -1,10 +1,13 @@
 ;;; slim-mode.el --- Major mode for editing Slim files
 
 ;; Copyright (c) 2007, 2008 Nathan Weizenbaum
-;; Modified slightly for Slim by Daniel Mendler
+;; Copyright (c) 2009 - 2012 Daniel Mendler
+;; Copyright (c) 2012 Bozhidar Batsov
 
 ;; Author: Nathan Weizenbaum
-;; URL: http://github.com/stonean/slim
+;; Author: Daniel Mendler
+;; Author: Bozhidar Batsov
+;; URL: http://github.com/minad/emacs-slim
 ;; Version: 1.0
 ;; Keywords: markup, language
 
@@ -104,7 +107,7 @@ text nested beneath them.")
     ("^ *\\(\\.[a-z0-9_-]+\/?\\)"
      1 font-lock-type-face)
     ;; div
-    ("^ *\\([a-z0-9_-]+\/?\\)"
+    ("^ *\\([a-z0-9_]+\/?\\)"
      1 font-lock-function-name-face)
     ;; #id.class
     ("^ *\\(#[a-z0-9_-]+\/?\\)"
@@ -117,17 +120,17 @@ text nested beneath them.")
      ("\\.[a-z0-9_-]+" nil nil
       (0 font-lock-type-face)))
     ;; .class#id
-    ("^ *\\(\\.[a-z0-9_]+\/?\\)"
+    ("^ *\\(\\.[a-z0-9_-]+\/?\\)"
      (1 font-lock-type-face)
      ("\\#[a-z0-9_-]+" nil nil
       (0 font-lock-keyword-face)))
     ;; div.class
-    ("^ *\\([a-z0-9_-]+\/?\\)"
+    ("^ *\\([a-z0-9_]+\/?\\)"
      (1 font-lock-function-name-face)
      ("\\.[a-z0-9_-]+" nil nil
       (0 font-lock-type-face)))
     ;; div#id
-    ("^ *\\([a-z0-9_-]+\/?\\)"
+    ("^ *\\([a-z0-9_]+\/?\\)"
      (1 font-lock-function-name-face)
      ("\\#[a-z0-9_-]+" nil nil
       (0 font-lock-keyword-face)))
