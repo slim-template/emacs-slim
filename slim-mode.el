@@ -76,28 +76,67 @@ text nested beneath them.")
   (concat "^\\( *\\)" re "\n\\(?:\\(?:\\1 .*\\)\n\\)*"))
 
 (defconst slim-font-lock-keywords
-  `((,(slim-nested-re "/.*")              0 font-lock-comment-face)                 ;; Comment block
-    (,(slim-nested-re "[a-z0-9_]+:")      0 font-lock-string-face)                  ;; Embedded block
-    (,(slim-nested-re "[\|'`].*")         0 font-lock-string-face)                  ;; Text block
-    ("^!.*"                               0 font-lock-constant-face)                ;; Directive
-    ("\\('[^']*'\\)"                      1 font-lock-string-face append)           ;; Single quote string TODO
-    ("\\(\"[^\"]*\"\\)"                   1 font-lock-string-face append)           ;; Double quoted string TODO
-    ("@[a-z0-9_]+"                        0 font-lock-variable-name-face append)    ;; Class variable TODO
-    ("^ *\\(#[a-z0-9_-]+\/?\\)"           1 font-lock-keyword-face)                 ;; #id
-    ("^ *\\(\\.[a-z0-9_-]+\/?\\)"         1 font-lock-type-face)                    ;; .class
-    ("^ *\\([a-z0-9_-]+\/?\\)"            1 font-lock-function-name-face)           ;; div
-    ("^ *\\(#[a-z0-9_-]+\/?\\)"           (1 font-lock-keyword-face)                ;; #id.class
-     ("\\.[a-z0-9_-]+" nil nil            (0 font-lock-type-face)))
-    ("^ *\\(\\.[a-z0-9_-]+\/?\\)"         (1 font-lock-type-face)                   ;; .class.class
-     ("\\.[a-z0-9_-]+" nil nil            (0 font-lock-type-face)))
-    ("^ *\\(\\.[a-z0-9_]+\/?\\)"          (1 font-lock-type-face)                   ;; .class#id
-     ("\\#[a-z0-9_-]+" nil nil            (0 font-lock-keyword-face)))
-    ("^ *\\([a-z0-9_-]+\/?\\)"            (1 font-lock-function-name-face)          ;; div.class
-     ("\\.[a-z0-9_-]+" nil nil            (0 font-lock-type-face)))
-    ("^ *\\([a-z0-9_-]+\/?\\)"            (1 font-lock-function-name-face)          ;; div#id
-     ("\\#[a-z0-9_-]+" nil nil            (0 font-lock-keyword-face)))
-    ("^ *\\(\\(==?|-\\) .*\\)"            1 font-lock-preprocessor-face prepend)    ;; ==, =, -
-    ("^ *[\\.#a-z0-9_-]+\\(==? .*\\)"     1 font-lock-preprocessor-face prepend)))  ;; tag ==, tag =
+  `(;; comment block
+    (,(slim-nested-re "/.*")
+     0 font-lock-comment-face)
+    ;; embedded block
+    (,(slim-nested-re "[a-z0-9_]+:")
+     0 font-lock-string-face)
+    ;; text block
+    (,(slim-nested-re "[\|'`].*")
+     0 font-lock-string-face)
+    ;; directive
+    ("^!.*"
+     0 font-lock-constant-face)
+    ;; Single quote string TODO
+    ("\\('[^']*'\\)"
+     1 font-lock-string-face append)
+    ;; Double quoted string TODO
+    ("\\(\"[^\"]*\"\\)"
+     1 font-lock-string-face append)
+    ;; Class variable TODO
+    ("@[a-z0-9_]+"
+     0 font-lock-variable-name-face append)
+    ;; #id
+    ("^ *\\(#[a-z0-9_-]+\/?\\)"
+     1 font-lock-keyword-face)
+    ;; .class
+    ("^ *\\(\\.[a-z0-9_-]+\/?\\)"
+     1 font-lock-type-face)
+    ;; div
+    ("^ *\\([a-z0-9_-]+\/?\\)"
+     1 font-lock-function-name-face)
+    ;; #id.class
+    ("^ *\\(#[a-z0-9_-]+\/?\\)"
+     (1 font-lock-keyword-face)
+     ("\\.[a-z0-9_-]+" nil nil
+      (0 font-lock-type-face)))
+    ;; .class.class
+    ("^ *\\(\\.[a-z0-9_-]+\/?\\)"
+     (1 font-lock-type-face)
+     ("\\.[a-z0-9_-]+" nil nil
+      (0 font-lock-type-face)))
+    ;; .class#id
+    ("^ *\\(\\.[a-z0-9_]+\/?\\)"
+     (1 font-lock-type-face)
+     ("\\#[a-z0-9_-]+" nil nil
+      (0 font-lock-keyword-face)))
+    ;; div.class
+    ("^ *\\([a-z0-9_-]+\/?\\)"
+     (1 font-lock-function-name-face)
+     ("\\.[a-z0-9_-]+" nil nil
+      (0 font-lock-type-face)))
+    ;; div#id
+    ("^ *\\([a-z0-9_-]+\/?\\)"
+     (1 font-lock-function-name-face)
+     ("\\#[a-z0-9_-]+" nil nil
+      (0 font-lock-keyword-face)))
+    ;; ==, =, -
+    ("^ *\\(\\(==?|-\\) .*\\)"
+     1 font-lock-preprocessor-face prepend)
+    ;; tag ==, tag =
+    ("^ *[\\.#a-z0-9_-]+\\(==? .*\\)"
+     1 font-lock-preprocessor-face prepend)))
 
 (defconst slim-embedded-re "^ *[a-z0-9_-]+:")
 (defconst slim-comment-re  "^ */")
