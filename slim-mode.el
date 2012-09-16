@@ -92,7 +92,7 @@ text nested beneath them.")
     ("^!.*"
      0 font-lock-constant-face)
     ;; Single quote string TODO
-    ("\\('[^']*'\\)"
+    ("[^=]\\('[^'\n]*'\\)"
      1 font-lock-string-face append)
     ;; Double quoted string TODO
     ("\\(\"[^\"]*\"\\)"
@@ -143,8 +143,8 @@ text nested beneath them.")
      (1 font-lock-function-name-face)
      ("\\#[a-z0-9_-]+" nil nil
       (0 font-lock-keyword-face)))
-    ;; ==, =, -
-    ("^ *\\(==?\\|-\\)"
+    ;; ==', =', -
+    ("^ *\\(==?'?\\|-\\)"
       (1 font-lock-preprocessor-face)
       (,(regexp-opt
          '("if" "for" "in" "do" "unless"
@@ -152,7 +152,7 @@ text nested beneath them.")
          'words) nil nil
            (0 font-lock-keyword-face)))
     ;; tag ==, tag =
-    ("^ *[\\.#a-z0-9_-]+.*\\(==?\\) +"
+    ("^ *[\\.#a-z0-9_-]+.*[^<>]\\(==?'?\\) +"
      1 font-lock-preprocessor-face)))
 
 (defconst slim-embedded-re "^ *[a-z0-9_-]+:")
