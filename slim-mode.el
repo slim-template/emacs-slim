@@ -180,8 +180,6 @@ text nested beneath them.")
 
 (defvar slim-mode-syntax-table
   (let ((table (make-syntax-table)))
-    (modify-syntax-entry ?\' "\"" table)
-    (modify-syntax-entry ?\" "\"" table)
     (modify-syntax-entry ?: "." table)
     (modify-syntax-entry ?_ "w" table)
     table)
