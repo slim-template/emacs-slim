@@ -78,6 +78,22 @@ text nested beneath them.")
 (defun slim-nested-re (re)
   (concat "^\\( *\\)" re "\n\\(?:\\(?:\\1 .*\\)\n\\)*"))
 
+(defvar html-tags
+'("a" "abbr" "acronym" "address" "applet" "area" "article" "aside"
+"audio" "b" "base" "basefont" "bdo" "big" "blockquote" "body"
+"br" "button" "canvas" "caption" "center" "cite" "code" "col"
+"colgroup" "command" "datalist" "dd" "del" "details" "dialog" "dfn"
+"dir" "div" "dl" "dt" "em" "embed" "fieldset" "figure" "font" "footer"
+"form" "frame" "frameset" "h1" "head" "header" "hgroup" "hr" "html" "i"
+"iframe" "img" "input" "ins" "keygen" "kbd" "label" "legend" "li" "link"
+"map" "mark" "menu" "meta" "meter" "nav" "noframes" "noscript" "object"
+"ol" "optgroup" "option" "output" "p" "param" "pre" "progress" "q" "rp"
+"rt" "ruby" "s" "samp" "script" "section" "select" "small" "source" "span"
+"strike" "strong" "style" "sub" "sup" "table" "tbody" "td" "textarea" "tfoot"
+"th" "thead" "time" "title" "tr" "tt" "u" "ul" "var" "video" "xmp" ))
+
+(defvar html-tags-re (concat "^ *\\(" (regexp-opt html-tags 'words) "\/?\\)"))
+
 (defconst slim-font-lock-keywords
   `(;; comment block
     (,(slim-nested-re "/.*")
@@ -115,9 +131,12 @@ text nested beneath them.")
     ;; .class
     ("^ *[a-z0-9_#-]*\\(\\(\\.[a-z0-9_-]+\/?\\)+\\)"
      1 font-lock-type-face)
-    ;; div
-    ("^ *\\([a-z0-9_]+\/?\\)"
+    ;; tag
+    (,html-tags-re
      1 font-lock-function-name-face)
+    ;; doctype
+    ("^\\(doctype .*$\\)"
+     1 font-lock-preprocessor-face)
     ;; ==', =', -
     ("^ *\\(==?'?\\|-\\)"
       (1 font-lock-preprocessor-face)
