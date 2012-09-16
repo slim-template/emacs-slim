@@ -83,8 +83,8 @@ text nested beneath them.")
     (,(slim-nested-re "/.*")
      0 font-lock-comment-face)
     ;; embedded block
-    (,(slim-nested-re "[a-z0-9_]+:")
-     0 font-lock-string-face)
+    (,(slim-nested-re "\\([a-z0-9_]+:\\)")
+     0 font-lock-preprocessor-face)
     ;; text block
     (,(slim-nested-re "[\|'`].*")
      0 font-lock-string-face)
