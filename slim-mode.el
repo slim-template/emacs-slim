@@ -110,39 +110,14 @@ text nested beneath them.")
     ;; ruby symbol (1.9)
     ("\\w+:" . font-lock-constant-face)
     ;; #id
-    ("^ *\\(#[a-z0-9_-]+\/?\\)"
+    ("^ *[a-z0-9_.-]*\\(#[a-z0-9_-]+\/?\\)"
      1 font-lock-keyword-face)
     ;; .class
-    ("^ *\\(\\.[a-z0-9_-]+\/?\\)"
+    ("^ *[a-z0-9_#-]*\\(\\(\\.[a-z0-9_-]+\/?\\)+\\)"
      1 font-lock-type-face)
     ;; div
     ("^ *\\([a-z0-9_]+\/?\\)"
      1 font-lock-function-name-face)
-    ;; #id.class
-    ("^ *\\(#[a-z0-9_-]+\/?\\)"
-     (1 font-lock-keyword-face)
-     ("\\.[a-z0-9_-]+" nil nil
-      (0 font-lock-type-face)))
-    ;; .class.class
-    ("^ *\\(\\.[a-z0-9_-]+\/?\\)"
-     (1 font-lock-type-face)
-     ("\\.[a-z0-9_-]+" nil nil
-      (0 font-lock-type-face)))
-    ;; .class#id
-    ("^ *\\(\\.[a-z0-9_-]+\/?\\)"
-     (1 font-lock-type-face)
-     ("\\#[a-z0-9_-]+" nil nil
-      (0 font-lock-keyword-face)))
-    ;; div.class
-    ("^ *\\([a-z0-9_]+\/?\\)"
-     (1 font-lock-function-name-face)
-     ("\\.[a-z0-9_-]+" nil nil
-      (0 font-lock-type-face)))
-    ;; div#id
-    ("^ *\\([a-z0-9_]+\/?\\)"
-     (1 font-lock-function-name-face)
-     ("\\#[a-z0-9_-]+" nil nil
-      (0 font-lock-keyword-face)))
     ;; ==', =', -
     ("^ *\\(==?'?\\|-\\)"
       (1 font-lock-preprocessor-face)
