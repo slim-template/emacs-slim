@@ -3,19 +3,17 @@
 `slim-mode` provides Emacs support for editing
 [Slim](http://slim-lang.com) templates. It's based on `haml-mode`.
 
+![Screenshot](http://i50.tinypic.com/2441b8i.png)
+
 # Installation
 
 ## Manual
+
 Just drop `slim-mode.el` somewhere in your `load-path`. I favour the
 folder `~/.emacs.d/vendor`:
 
-```
+```lisp
 (add-to-list 'load-path "~/emacs.d/vendor")
-```
-
-You can enable `slim-mode` like this:
-
-```
 (require 'slim-mode)
 ```
 
@@ -40,11 +38,13 @@ action.
 
 # Usage
 
-COMING SOON
+Just start editing slim files. :-)
 
 # Caveats
 
-COMING SOON
+The mode is a work in progress and not everything is implemented
+yet. Be patient and send bug reports when you notice that something is
+wrong/missing/not perfect.
 
 ## Known issues
 

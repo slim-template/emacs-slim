@@ -8,7 +8,7 @@
 ;; Author: Daniel Mendler
 ;; Author: Bozhidar Batsov
 ;; URL: http://github.com/minad/emacs-slim
-;; Version: 1.0
+;; Version: 1.1
 ;; Keywords: markup, language
 
 ;;; Commentary:
@@ -28,8 +28,8 @@
 
 ;;; Code:
 
-
-(eval-when-compile (require 'cl))
+(eval-when-compile
+  (require 'cl))
 
 ;; User definable variables
 
