@@ -122,7 +122,7 @@ text nested beneath them.")
     ("@[a-z0-9_]+"
      (0 font-lock-variable-name-face)
      ("\\.[a-z0-9_-]+" nil nil
-      (0 font-lock-keyword-face)))
+      (0 font-lock-variable-name-face)))
     ;; ruby symbol
     (":\\w+" . font-lock-constant-face)
     ;; ruby symbol (1.9)
@@ -148,7 +148,7 @@ text nested beneath them.")
          'words) nil nil
            (0 font-lock-keyword-face)))
     ;; tag ==, tag =
-    ("^ *[\\.#a-z0-9_-]+.*[^<>]\\(==?'?\\) +"
+    ("^ *[\\.#a-z0-9_-]+.*[^<>!]\\(==?'?\\) +"
      1 font-lock-preprocessor-face)))
 
 (defconst slim-embedded-re "^ *[a-z0-9_-]+:")
