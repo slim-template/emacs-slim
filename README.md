@@ -51,14 +51,15 @@ wrong/missing/not perfect.
 ## Known issues
 
 Check out the project's
-[issue list](https://github.com/minad/emacs-slim/issues?sort=created&direction=desc&state=open)
+[issue list](https://github.com/slim-template/emacs-slim/issues?sort=created&direction=desc&state=open)
 a list of unresolved issues. By the way - feel free to fix any of them
 and sent us a pull request. :-)
 
 ## Contributors
 
-Here's a [list](https://github.com/minad/emacs-slim/contributors) of all the people who have contributed to the
-development of `slim-mode`.
+Here's a
+[list](https://github.com/slim-template/emacs-slim/contributors) of
+all the people who have contributed to the development of `slim-mode`.
 
 ## Bugs & Improvements
 
