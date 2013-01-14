@@ -7,6 +7,8 @@
 
 # Installation
 
+All users are encouraged to install `slim-mode` via package.el.
+
 ## Manual
 
 Just drop `slim-mode.el` somewhere in your `load-path`. I favour the
