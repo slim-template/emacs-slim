@@ -1,13 +1,13 @@
 ;;; slim-mode.el --- Major mode for editing Slim files
 
 ;; Copyright (c) 2007, 2008 Nathan Weizenbaum
-;; Copyright (c) 2009 - 2012 Daniel Mendler
-;; Copyright (c) 2012 Bozhidar Batsov
+;; Copyright (c) 2009-2013 Daniel Mendler
+;; Copyright (c) 2012-2013 Bozhidar Batsov
 
 ;; Author: Nathan Weizenbaum
 ;; Author: Daniel Mendler
 ;; Author: Bozhidar Batsov
-;; URL: http://github.com/minad/emacs-slim
+;; URL: http://github.com/slim-template/emacs-slim
 ;; Version: 1.1
 ;; Keywords: markup, language
 
