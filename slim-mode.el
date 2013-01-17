@@ -26,6 +26,8 @@
 ;;; Code:
 
 (eval-when-compile
+  (defvar font-lock-beg)
+  (defvar font-lock-end)
   (require 'cl))
 
 ;; User definable variables
