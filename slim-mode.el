@@ -327,12 +327,17 @@ With ARG, do this that many times."
 last line of the sexp rather than the first non-whitespace
 character of the next line."
   (slim-mark-sexp)
-  (set-mark
-   (save-excursion
-     (goto-char (mark))
-     (forward-line -1)
-     (end-of-line)
-     (point))))
+  (let ((pos-of-end-of-line (save-excursion
+                               (goto-char (mark))
+                               (end-of-line)
+                               (point))))
+    (when (/= pos-of-end-of-line (mark))
+      (set-mark
+       (save-excursion
+         (goto-char (mark))
+         (forward-line -1)
+         (end-of-line)
+         (point))))))
 
 ;; Indentation and electric keys
 
