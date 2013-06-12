@@ -191,8 +191,12 @@ text nested beneath them.")
     (define-key map "\C-c\C-k" 'slim-kill-line-and-indent)
     map))
 
+;; For compatibility with Emacs < 24, derive conditionally
+(defalias 'slim-parent-mode
+  (if (fboundp 'prog-mode) 'prog-mode 'fundamental-mode))
+
 ;;;###autoload
-(define-derived-mode slim-mode fundamental-mode "Slim"
+(define-derived-mode slim-mode slim-parent-mode "Slim"
   "Major mode for editing Slim files.
 
 \\{slim-mode-map}"
