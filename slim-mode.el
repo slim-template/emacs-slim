@@ -328,9 +328,9 @@ last line of the sexp rather than the first non-whitespace
 character of the next line."
   (slim-mark-sexp)
   (let ((pos-of-end-of-line (save-excursion
-                               (goto-char (mark))
-                               (end-of-line)
-                               (point))))
+                              (goto-char (mark))
+                              (end-of-line)
+                              (point))))
     (when (/= pos-of-end-of-line (mark))
       (set-mark
        (save-excursion
