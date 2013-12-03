@@ -413,10 +413,11 @@ back-dent the line by `slim-indent-offset' spaces.  On reaching column
   "Add N spaces to the beginning of each line in the region.
 If N is negative, will remove the spaces instead.  Assumes all
 lines in the region have indentation >= that of the first line."
-  (let ((ci (current-indentation)))
+  (let ((ci (current-indentation))
+        (bound (mark)))
     (save-excursion
-      (while (re-search-forward (concat "^" (make-string ci ? )) nil t)
-        (replace-match (make-string (max 0 (+ ci n)) ? ) nil nil)))))
+      (while (re-search-forward (concat "^" (make-string ci ? )) bound t)
+        (replace-match (make-string (max 0 (+ ci n)) ? ) bound nil)))))
 
 (defun slim-electric-backspace (arg)
   "Delete characters or back-dent the current line.
