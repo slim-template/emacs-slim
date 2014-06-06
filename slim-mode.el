@@ -2,7 +2,7 @@
 
 ;; Copyright (c) 2007, 2008 Nathan Weizenbaum
 ;; Copyright (c) 2009-2013 Daniel Mendler
-;; Copyright (c) 2012-2013 Bozhidar Batsov
+;; Copyright (c) 2012-2014 Bozhidar Batsov
 
 ;; Author: Nathan Weizenbaum
 ;; Author: Daniel Mendler
