@@ -431,7 +431,9 @@ the current line."
   (if (or (/= (current-indentation) (current-column))
           (bolp)
           (looking-at "^[ \t]+$"))
-      (backward-delete-char arg)
+      (if electric-pair-mode
+          (electric-pair-backward-delete-char arg)
+        (backward-delete-char arg))
     (save-excursion
       (let ((ci (current-column)))
         (beginning-of-line)
