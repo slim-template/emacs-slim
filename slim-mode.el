@@ -182,7 +182,7 @@ text nested beneath them.")
 
 (defvar slim-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map [backspace] 'slim-electric-backspace)
+    (define-key map "\177" 'slim-electric-backspace)
     (define-key map "\C-?" 'slim-electric-backspace)
     (define-key map "\C-c\C-f" 'slim-forward-sexp)
     (define-key map "\C-c\C-b" 'slim-backward-sexp)
@@ -432,9 +432,7 @@ the current line."
   (if (or (/= (current-indentation) (current-column))
           (bolp)
           (looking-at "^[ \t]+$"))
-      (if electric-pair-mode
-          (electric-pair-backward-delete-char arg)
-        (backward-delete-char arg))
+      (backward-delete-char-untabify arg)
     (save-excursion
       (let ((ci (current-column)))
         (beginning-of-line)
