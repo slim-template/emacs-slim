@@ -160,7 +160,7 @@ text nested beneath them.")
          'words) nil nil
            (0 font-lock-keyword-face)))
     ;; tag ==, tag =
-    ("^ *[\\.#a-z0-9_-]+.*[^<>!]\\(==?'?\\) +"
+    ("^ *[\\.#a-z0-9_-]+.*[^<>!=]\\(==?'?\\) +"
      1 font-lock-preprocessor-face)))
 
 (defconst slim-embedded-re "^ *[a-z0-9_-]+:")
