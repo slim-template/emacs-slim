@@ -73,11 +73,7 @@ if the next line could be nested within this line.")
 
 (defvar slim-block-openers
   `("^ *\\([\\.#a-z][^ \t]*\\)\\(\\[.*\\]\\)?"
-    "^ *[-=].*do[ \t]*\\(|.*|[ \t]*\\)?$"
-    ,(concat "^ *-[ \t]*\\("
-             (regexp-opt '("if" "unless" "while" "until" "else"
-                           "begin" "elsif" "rescue" "ensure" "when"))
-             "\\)")
+    "^ *[-=]"
     "^ *|"
     "^ */"
     "^ *[a-z0-9_]:")
