@@ -222,6 +222,26 @@ text nested beneath them.")
 
 ;; Useful functions
 
+(defun slim-mark-block-exactly ()
+  "Mark the Slim block starting at the current line, and nothing more.
+Unlike `slim-mark-sexp', the mark is placed at the end of the block's
+last line rather than on the next line, so that a following sibling
+is not affected by `slim-reindent-region-by'.  Also handles a block
+whose last line has no trailing newline at the end of the buffer."
+  (let ((start (line-beginning-position)))
+    (slim-mark-sexp)
+    (let ((end (save-excursion
+                 (goto-char (mark))
+                 (let ((outside (and (> (line-beginning-position) start)
+                                     (<= (current-indentation)
+                                         (save-excursion (goto-char start)
+                                                         (current-indentation))))))
+                   (if outside
+                       (progn (forward-line -1) (end-of-line))
+                     (end-of-line)))
+                 (point))))
+      (set-mark end))))
+
 (defun slim-comment-block ()
   "Comment the current block of Slim code."
   (interactive)
@@ -232,7 +252,7 @@ text nested beneath them.")
       (newline)
       (indent-to indent)
       (beginning-of-line)
-      (slim-mark-sexp)
+      (slim-mark-block-exactly)
       (slim-reindent-region-by slim-indent-offset))))
 
 (defun slim-uncomment-block ()
@@ -422,12 +442,25 @@ back-dent the line by `slim-indent-offset' spaces.  On reaching column
 (defun slim-reindent-region-by (n)
   "Add N spaces to the beginning of each line in the region.
 If N is negative, will remove the spaces instead.  Assumes all
-lines in the region have indentation >= that of the first line."
+lines in the region have indentation >= that of the first line.
+
+The region's end is tracked with a marker and the lines are visited
+one by one, so the loop neither drifts past the end of the region when
+the buffer length changes nor re-matches the same line when the new
+indentation is column 0."
   (let ((ci (current-indentation))
-        (bound (mark)))
-    (save-excursion
-      (while (re-search-forward (concat "^" (make-string ci ? )) bound t)
-        (replace-match (make-string (max 0 (+ ci n)) ? ) bound nil)))))
+        (bound (copy-marker (mark)))
+        (new-indent nil))
+    (setq new-indent (make-string (max 0 (+ ci n)) ?\s))
+    (unwind-protect
+        (save-excursion
+          (beginning-of-line)
+          (while (< (point) bound)
+            (when (and (not (looking-at "[ \t]*$"))
+                       (looking-at (concat (make-string ci ?\s))))
+              (replace-match new-indent))
+            (forward-line 1)))
+      (set-marker bound nil))))
 
 (defun slim-electric-backspace (arg)
   "Delete characters or back-dent the current line.
